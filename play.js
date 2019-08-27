@@ -6,18 +6,20 @@ const person = {
     }
 };
 
-const copiedPerson = {...person}; // pull out of array spread
-console.log(copiedPerson);
+
+const printName = ({ name}) => {
+    console.log(name);
+}
+
+printName(person);
+
+const {name, age} = person;
+
+console.log(name, age);
+
 // arrays
 const hobbies = ['Sports', 'Cooking'];
 
-const copiedArray = [...hobbies];  // spread
+const [hobbie1, hobbie2] = hobbies;
 
-console.log(copiedArray);
-
-
-const toArray =(...arg) =>{ // merge items rest operators
-    return arg;
-};
-
-console.log(toArray(1,2,3,4,5));
+console.log(hobbie1, hobbie2);
