@@ -6,20 +6,18 @@ const person = {
     }
 };
 
-//person.greet();
-
+const copiedPerson = {...person}; // pull out of array spread
+console.log(copiedPerson);
 // arrays
 const hobbies = ['Sports', 'Cooking'];
 
-/* for( let hobby of hobbies){
-    console.log(hobby);
-} 
+const copiedArray = [...hobbies];  // spread
 
-console.log(hobbies.map(hobby =>{
-    return 'Hobby: ' + hobby
-}));
-console.log(hobbies); */
+console.log(copiedArray);
 
-hobbies.push('Programming');
 
-console.log(hobbies);
+const toArray =(...arg) =>{ // merge items rest operators
+    return arg;
+};
+
+console.log(toArray(1,2,3,4,5));
