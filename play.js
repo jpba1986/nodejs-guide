@@ -4,7 +4,8 @@ const hasHobbies = true;
 
 
 age = 44;
-function sumarizeUser(userName, userAge, userHasHobby){
+
+const sumarizeUser = (userName, userAge, userHasHobby) => {
     return  ('Name is ' + 
               userName + 
               ' age is '+
