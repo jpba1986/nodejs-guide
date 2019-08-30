@@ -36,15 +36,7 @@ if (url === '/') {
 
 };
 
-// 1
-//module.exports = requestHandler;
-
-// 2
 module.exports = {
     handler: requestHandler,
     someText : 'Some hard coded text'
 };
-
-// 3 
-//module.exports.handler =requestHandler;
-//module.exports.someText ='Some hard coded text';
