@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpba1986/nodejs-guide.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpba1986/nodejs-guide/issues"
+  },
+  "homepage": "https://github.com/jpba1986/nodejs-guide#readme"
+}
