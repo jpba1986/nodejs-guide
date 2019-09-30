@@ -2,17 +2,29 @@ const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
 class Product {
-    constructor(title, price, description, imageUrl){
+    constructor(title, price, description, imageUrl, id){
         this.title = title;
         this.price = price;
         this.description = description;
         this.imageUrl = imageUrl;
+        this._id = new mongodb.ObjectId(id)
     }
 
     save(){
         const db = getDb();
-        db.collection('products')
-        .insertOne(this)
+        let dbOP;
+        console.log('IM HERE' + this.price);
+        if (this._id){
+            dbOP = db
+            .collection('products')
+            .updateOne({_id: this._id}, { $set: this });
+
+        }else{
+            dbOP = db
+            .collection('products')
+            .insertOne(this)
+        }
+        return dbOP
         .then(result => {
             console.log(result);
         })
@@ -34,7 +46,7 @@ class Product {
         console.log(mongodb.ObjectId(prodId));
         return db
         .collection('products')
-        .find({ _id: mongodb.ObjectId(prodId) }) // FIX !!
+        .find({ _id: new mongodb.ObjectId(prodId) }) // FIX !!
         .next()
         .then( product =>{
             console.log(product);
