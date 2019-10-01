@@ -11,5 +11,5 @@ const CartItem = sequelize.define('cartItem',{
     },
     quantity: Sequelize.INTEGER
 });
-
+// this is a test
 module.exports = CartItem;
