@@ -60,7 +60,7 @@ class User{
         });
         return db
         .collection('products')
-        .find({_id: { $in:[productIds] } })
+        .find({_id: { $in: productIds } })
         .toArray()
         .then( products =>{
             return products.map ( p =>{
@@ -73,6 +73,20 @@ class User{
             });
         })
         .catch(err => console.log(err));  
+    }
+
+    deleteItemFromCart(prodId){
+        const updatedCartItems = this.cart.items.filter(item =>{
+            return item.productId.toString() !== prodId.toString();
+        });
+        const db = getDb();
+        return db
+        .collection('users')
+        .updateOne(
+            {_id: new ObjectId(this._id)},
+            { $set: { cart: {items: updatedCartItems } }}
+        );
+
     }
 
     static findById(userId){        
