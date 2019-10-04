@@ -1,4 +1,28 @@
-const mongodb = require('mongodb');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    cart : {
+        items: [
+            {
+                productId: { type: Schema.Types.ObjectId, require: true }, 
+                quantity:{ type: Number, require: true}
+            }
+        ]
+    }
+});
+
+module.exports = mongoose.model('User', userSchema);
+
+/* const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
 const ObjectId = mongodb.ObjectId;
@@ -136,4 +160,4 @@ class User{
     }
 }
 
-module.exports = User;
+module.exports = User; */
