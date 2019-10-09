@@ -3,10 +3,9 @@
 
     <body>
         <%- include('../includes/navigation.ejs') %>
-        
         <main class="centered">
             <h1><%= product.title %></h1>
-<hr>
+            <hr>
             <div class="image">
                 <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
             </div>
@@ -14,5 +13,4 @@
             <p><%= product.description %></p>
             <%- include('../includes/add-to-cart.ejs') %>
         </main>
-        
         <%- include('../includes/end.ejs') %>
