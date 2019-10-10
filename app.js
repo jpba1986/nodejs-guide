@@ -32,14 +32,14 @@ app.use(session({
     saveUninitialized: false,
     store: store    
 }));
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   User.findById('5d974ae6c85e472b80598b12')
     .then(user => {
       req.user = user;
       next();
     })
     .catch(err => console.log(err));
-});
+}); */
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
