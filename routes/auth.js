@@ -25,7 +25,13 @@ router.post(
             }), 
         body('password', 'Wrong password setup')
             .isLength({ min: 5})
-            .isAlphanumeric()
+            .isAlphanumeric(),
+        body('confirmPassword').custom( (value , {req})=>{
+            if (value !== req.body.password){
+                throw new Error('Not Match!');
+            }
+            return true;
+        })
     ],
     authController.postSignup
 );
