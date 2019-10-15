@@ -14,10 +14,12 @@ router.post('/login',
     [
         body('email')
             .isEmail()
-            .withMessage('wrong email.'),
+            .withMessage('wrong email.')
+            .normalizeEmail(),
         body('password','Wrong password')
             .isLength({ min: 5})
             .isAlphanumeric()
+            .trim()
     ], 
     authController.postLogin
 );
@@ -40,16 +42,19 @@ router.post(
                     );
                   }
                 });
-            }), 
+            })
+            .normalizeEmail(), 
         body('password', 'Wrong password setup')
             .isLength({ min: 5})
-            .isAlphanumeric(),
+            .isAlphanumeric()
+            .trim(),
         body('confirmPassword').custom( (value , {req})=>{
             if (value !== req.body.password){
                 throw new Error('Not Match!');
             }
             return true;
         })
+        .trim()
     ],
     authController.postSignup
 );
