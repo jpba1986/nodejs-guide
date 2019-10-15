@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport(sendgridTransport({
 
 exports.getLogin = (req, res, next) => {
    let  message = req.flash('error');
-   console.log(message);
+   //console.log(message);
   if (message.length > 0 ){
     message = message[0];
   }
@@ -29,7 +29,7 @@ exports.getLogin = (req, res, next) => {
 
 exports.getSignup = (req, res, next) => {
   let  message = req.flash('error');
-  console.log(message);
+  //console.log(message);
  if (message.length > 0 ){
    message = message[0];
  }
@@ -124,7 +124,7 @@ exports.postLogout = (req, res, next) => {
 
 exports.getReset = (req,res,next)=>{
   let  message = req.flash('error');
-  console.log(message);
+  //console.log(message);
  if (message.length > 0 ){
    message = message[0];
  }

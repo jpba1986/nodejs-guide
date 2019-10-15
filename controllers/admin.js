@@ -72,8 +72,8 @@ exports.postEditProduct = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.getProducts = (req, res, next) => {
-  Product.find()
+exports.getProducts = (req, res, next) => { 
+  Product.find({userId: req.user._id })
     .then(products => {
       res.render('admin/products', {
         prods: products,
