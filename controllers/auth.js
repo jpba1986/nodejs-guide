@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 
 const User = require('../models/user');
 
@@ -138,6 +138,7 @@ exports.postSignup = (req, res, next) => {
       bcrypt
         .hash(password, 12)
         .then(hashedPassword => {
+          //console.log(hashedPassword);
           const user = new User({
             email: email,
             password: hashedPassword,
