@@ -38,7 +38,6 @@ body('title', 'wrong title')
     .isString()
     .isLength({ min:3})
     .trim(),
-body('imageUrl', 'wrong url').isURL(),
 body('price').isFloat(),
 body('description', 'wrong description')     
     .isLength({ min:5, max: 400})
