@@ -13,7 +13,7 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const MONGODB_URI =
-'mongodb+srv://jp:StHp4Uf2RjvD27DD@cluster0-c95ia.mongodb.net/shop';
+'mongodb+srv://jp:0NWzvzA769etDRMg@cluster0-c95ia.mongodb.net/shop';
 
 const app = express();
 const store = new MongoDBStore({
@@ -28,7 +28,7 @@ const fileStorage = multer.diskStorage({
     cb(null,'images');
   },
   filename: (req,file, cb)=>{
-    cb(null, new Date().toISOString() + '-' + file.originalname, );
+    cb(null, new Date().toISOString() + '-' + file.originalname );
   }
 });
 
@@ -53,9 +53,12 @@ const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
+app.use(
+  multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
+  );
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(
   session({
     secret: 'my secret',
