@@ -28,15 +28,15 @@ const fileStorage = multer.diskStorage({
     cb(null,'images');
   },
   filename: (req,file, cb)=>{
-    cb(null, new Date().toISOString() + '-' + file.originalname );
+    cb(null, new Date().toISOString() + '-' + file.originalname );    
   }
 });
 
 const fileFilter = (req, file, cb) =>{
   if (
-        file.minetype ==='image/png' || 
-        file.minetype ==='image/jpg' || 
-        file.minetype ==='image/jpeg' 
+        file.mimetype ==='image/png' || 
+        file.mimetype ==='image/jpg' || 
+        file.mimetype ==='image/jpeg' 
       )
   {
     cb(null, true);
