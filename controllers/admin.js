@@ -19,7 +19,6 @@ exports.postAddProduct = (req, res, next) => {
   const image = req.file;
   const price = req.body.price;
   const description = req.body.description;
-  console.log(req.file);
    if (!image){
     return res.status(422).render('admin/edit-product', {
       pageTitle: 'Add Product',
@@ -152,8 +151,6 @@ exports.postEditProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => { 
-  //console.log(req.user._id);
-  //Product.find({userId: req.user._id })
   Product.find()
     .then(products => {
       res.render('admin/products', {

@@ -14,7 +14,6 @@ const transporter = nodemailer.createTransport(sendgridTransport({
 
 exports.getLogin = (req, res, next) => {
    let  message = req.flash('error');
-   //console.log(message);
   if (message.length > 0 ){
     message = message[0];
   }
@@ -35,7 +34,6 @@ exports.getLogin = (req, res, next) => {
 
 exports.getSignup = (req, res, next) => {
   let  message = req.flash('error');
-  //console.log(message);
  if (message.length > 0 ){
    message = message[0];
  }
@@ -141,8 +139,7 @@ exports.postSignup = (req, res, next) => {
   }
       bcrypt
         .hash(password, 12)
-        .then(hashedPassword => {
-          //console.log(hashedPassword);
+        .then(hashedPassword => {          
           const user = new User({
             email: email,
             password: hashedPassword,
@@ -152,12 +149,6 @@ exports.postSignup = (req, res, next) => {
         })
         .then(result => {
           res.redirect('/login');
-          /* return transporter.sendMail({
-            to: email,
-            from: 'shop@node-complete.com',
-            subject: 'Signup succeeded!',
-            html: '<h1>You successfully signed up!</h1>'
-          }); */
         })
         .catch(err => {
           const error = new Error(err);
@@ -175,7 +166,6 @@ exports.postLogout = (req, res, next) => {
 
 exports.getReset = (req,res,next)=>{
   let  message = req.flash('error');
-  //console.log(message);
  if (message.length > 0 ){
    message = message[0];
  }
@@ -210,15 +200,6 @@ exports.postReset = (req,res,next)=>{
     })
     .then(result => {
       res.redirect('/');
-/*       transporter.sendMail({
-        to: req.body.email,
-        from: 'shop@node-complete.com',
-        subject: 'Password reset',
-        html: `
-          <p>You request a password reset</p>
-          <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>
-        ` 
-      }); */
     })
     .catch(err => {
       const error = new Error(err);
