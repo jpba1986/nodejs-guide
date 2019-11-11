@@ -8,7 +8,7 @@
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
-  "author": "Maximilian Schwarzmüller",
+  "author": "JP",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.18.3"
@@ -34,5 +34,13 @@
     "pug": "^2.0.3",
     "sequelize": "^5.0.0-beta.11",
     "stripe": "^7.13.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpba1986/nodejs-guide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jpba1986/nodejs-guide/issues"
+  },
+  "homepage": "https://github.com/jpba1986/nodejs-guide#readme"
 }
