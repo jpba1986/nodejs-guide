@@ -23,13 +23,19 @@ exports.createPost = (req,res,next) =>{
         error.statusCode = 422;
         throw error;
     }
+    console.log(req.file);
+    if(!req.file){
+        const error = new Error('Not image');
+        error.statusCode = 422;
+        throw error;
+    }
+    const imageUrl = req.file.path;
     const title = req.body.title;
     const content = req.body.content;
-
     const post = new Post({
         title: title, 
         content:content,
-        imageUrl: 'images/1_500.jpg',
+        imageUrl: imageUrl,
         creator:{ name: 'JP'}        
     });
 
@@ -71,3 +77,7 @@ exports.getPost = (req,res,next)=>{
             next(err);
         });
 };
+
+exports.updatePost = (req, res, next) => {
+    imageUrl = req.file.path.replace("\\","/");
+}
