@@ -19,7 +19,11 @@ app.use('/feed', feedRoutes);
 
 mongoose
 .connect(
-    'mongodb+srv://jp:0NWzvzA769etDRMg@cluster0-c95ia.mongodb.net/messages'
+    'mongodb+srv://jp:0NWzvzA769etDRMg@cluster0-c95ia.mongodb.net/messages',
+    {
+        useUnifiedTopology: true, 
+        useNewUrlParser: true 
+    }
 )
 .then(result =>{
     app.listen(8080);
