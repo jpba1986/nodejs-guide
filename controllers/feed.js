@@ -29,7 +29,7 @@ exports.createPost = (req,res,next) =>{
         error.statusCode = 422;
         throw error;
     }
-    const imageUrl = req.file.path;
+    const imageUrl = req.file.path.replace("\\","/"); // req.file.path;
     const title = req.body.title;
     const content = req.body.content;
     const post = new Post({
@@ -59,6 +59,7 @@ exports.getPost = (req,res,next)=>{
     const postId = req.params.postId;
     Post.findById(postId)
         .then(post =>{
+            console.log(post);
             if (!post){
                 const error = new Error('No posts');
                 error.statusCode = 404;
