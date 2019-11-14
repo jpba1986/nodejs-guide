@@ -19,7 +19,6 @@ exports.getPosts = async (req,res,next) =>{
         .skip((currentPage -1 ) * perPage)
         .limit(perPage);
         
-        console.log(posts);
         res.status(200).json({ 
             message: 'Fetched!', 
             posts: posts,
@@ -127,7 +126,6 @@ exports.updatePost = async (req, res, next) => {
             throw error;
         }
 
-        console.log(' creator:'+ post.creator.toString() + ' reqUser:'+ req.userId);
         if (post.creator._id.toString() !== req.userId){
             const error = new Error('No auth for Update');
             error.statusCode = 403;
