@@ -44,6 +44,7 @@ app.use(
     .single('image')
     );
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
@@ -73,5 +74,9 @@ mongoose
     }
 )
 .then(result =>{
-    app.listen(8080);
+    const server = app.listen(8080);
+    const io = require('socket.io')(server);
+    io.on('connection', socket =>{
+      console.log('Client connected');
+    });
 }).catch(err => console.log(err));
