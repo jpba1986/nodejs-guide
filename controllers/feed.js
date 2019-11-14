@@ -18,6 +18,7 @@ exports.getPosts = async (req,res,next) =>{
         .sort({ createdAt: -1 })
         .skip((currentPage -1 ) * perPage)
         .limit(perPage);
+        
         console.log(posts);
         res.status(200).json({ 
             message: 'Fetched!', 
@@ -119,11 +120,14 @@ exports.updatePost = async (req, res, next) => {
     }
     try{
     const post = await Post.findById(postId).populate('creator');    
-        if (!post){
+     
+    if (!post){
             const error = new Error('No post');
             error.statusCode = 404;
             throw error;
         }
+
+        console.log(' creator:'+ post.creator.toString() + ' reqUser:'+ req.userId);
         if (post.creator._id.toString() !== req.userId){
             const error = new Error('No auth for Update');
             error.statusCode = 403;
@@ -173,6 +177,7 @@ exports.deletePost = async(req,res,next)=>{
         user.posts.pull(postId);
         await  user.save();
 
+        io.getIO().emit('posts', {action: 'delete', post: postId });
         res.status(200).json({ message:'Deleted ok'});
     } catch(err){        
         if (!err.statusCode){
