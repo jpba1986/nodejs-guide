@@ -20,7 +20,7 @@ module.exports = buildSchema(`
         posts:[Post!]!
     }
 
-    input AuthData{
+    type AuthData{
         token: String!
         userId: String!
     }
