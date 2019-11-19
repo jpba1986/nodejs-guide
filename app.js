@@ -71,9 +71,10 @@ app.put('/post-image', (req,res,next)=>{
   if (req.body.oldPath){
     clearImage(req.body.oldPath);
   }
+  const newImageUrl =  req.file.path.replace('\\', '/');
   return res
   .status(201)
-  .json({ message:'File stored', filePath: req.file.path });
+  .json({ message:'File stored', filePath: newImageUrl });
 });
 
 
